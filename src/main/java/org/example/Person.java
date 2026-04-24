@@ -1,12 +1,12 @@
 package org.example;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Person {
     private String name;
     private int age;
