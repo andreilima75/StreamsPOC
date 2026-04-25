@@ -3,6 +3,7 @@ package org.example;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class StreamsPOC {
 
@@ -28,5 +29,18 @@ public class StreamsPOC {
                 .toList();
 
         adults.forEach(System.out::println);
+
+        Predicate<Person> isFemale = p -> "Female".equals(p.getGender());
+        Predicate<Person> adultFemale = isAdult.and(isFemale);
+
+        System.out.println("=== 2. Filter + Map: Nome das adultas em maiúsculo ===");
+        List<String> adultFemaleNames = people.stream()
+                .filter(adultFemale)
+                .map(Person::getName)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+        System.out.println(adultFemaleNames);
     }
+
+
 }
