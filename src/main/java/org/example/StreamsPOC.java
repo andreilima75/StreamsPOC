@@ -22,7 +22,7 @@ public class StreamsPOC {
         Predicate<Person> isAdult = p -> p.getAge() >= 18;
 
 
-        System.out.println("=== 1. Filter: Adultos ===");
+        System.out.println("=== Filter: Adultos ===");
 
         List<Person> adults = people.stream()
                 .filter(isAdult)
@@ -33,13 +33,22 @@ public class StreamsPOC {
         Predicate<Person> isFemale = p -> "Female".equals(p.getGender());
         Predicate<Person> adultFemale = isAdult.and(isFemale);
 
-        System.out.println("=== 2. Filter + Map: Nome das adultas em maiúsculo ===");
+        System.out.println("=== Filter + Map: Nome das adultas em maiúsculo ===");
         List<String> adultFemaleNames = people.stream()
                 .filter(adultFemale)
                 .map(Person::getName)
                 .map(String::toUpperCase)
                 .collect(Collectors.toList());
         System.out.println(adultFemaleNames);
+
+        Predicate<Person> nameStartsWithA = p -> p.getName().startsWith("A");
+
+        System.out.println("=== Filter com Predicate inline + Map ===");
+        List<String> namesStartingWithA = people.stream()
+                .filter(nameStartsWithA)
+                .map(p -> p.getName() + " (" + p.getAge() + ")")
+                .collect(Collectors.toList());
+        System.out.println(namesStartingWithA);
     }
 
 
