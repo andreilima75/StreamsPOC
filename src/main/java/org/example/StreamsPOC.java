@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -60,6 +61,16 @@ public class StreamsPOC {
                 .toList();
 
         System.out.println("Nomes com mais de 4 letras (maiúsculo): " + longNames);
+
+        Set<String> namesSet = new java.util.HashSet<>(Set.of(namesArray));
+        namesSet.remove("Bob");
+
+        List<Person> filteredPeople = people.stream()
+                .filter(person -> namesSet.contains(person.getName()))
+                .toList();
+
+        System.out.println("=== Pessoas filtradas (nomes presentes no namesArray) ===");
+        filteredPeople.forEach(System.out::println);
     }
 
 
