@@ -49,6 +49,17 @@ public class StreamsPOC {
                 .map(p -> p.getName() + " (" + p.getAge() + ")")
                 .collect(Collectors.toList());
         System.out.println(namesStartingWithA);
+
+
+        System.out.println("=== Arrays ===");
+        String[] namesArray = {"Alice", "Bob", "Charlie", "Diana", "Eve"};
+
+        List<String> longNames = Arrays.stream(namesArray)
+                .filter(s -> s.length() > 4)
+                .map(String::toUpperCase)
+                .toList();
+
+        System.out.println("Nomes com mais de 4 letras (maiúsculo): " + longNames);
     }
 
 
